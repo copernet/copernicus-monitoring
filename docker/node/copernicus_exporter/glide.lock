@@ -1,6 +1,10 @@
-hash: cf6063b1ef7137aee5b1eab6534f411b61913745f0dd7cec33557fdb1dad6b89
-updated: 2018-12-12T16:30:15.759535+08:00
+hash: 649511020d496767c36a18eadc35950f2b05e8dcd85a4929aa7f51af582d162e
+updated: 2018-12-12T17:59:27.544373+08:00
 imports:
+- name: github.com/astaxie/beego
+  version: 1b6edafc96ad27b6515fafeccd7339dda3e997b1
+  subpackages:
+  - logs
 - name: github.com/beorn7/perks
   version: 3a771d992973f24aa725d07868b467d1ddfceafb
   subpackages:
@@ -9,8 +13,6 @@ imports:
   version: 1d3f30b51784bec5aad268e59fd3c2fc1c2fe73f
   subpackages:
   - proto
-- name: github.com/konsorten/go-windows-terminal-sequences
-  version: 5c8c8bd35d3832f5d134ae1e1e375b69a4d25242
 - name: github.com/matttproud/golang_protobuf_extensions
   version: c12348ce28de40eed0136aa2b644d0ee0650e56c
   subpackages:
@@ -37,14 +39,4 @@ imports:
   - internal/util
   - nfs
   - xfs
-- name: github.com/Sirupsen/logrus
-  version: bcd833dfe83d3cebad139e4a29ed79cb2318bf95
-- name: golang.org/x/crypto
-  version: 122d919ec1efcfb58483215da23f815853e24b81
-  subpackages:
-  - ssh/terminal
-- name: golang.org/x/sys
-  version: 1b2967e3c290b7c545b3db0deeda16e9be4f98a2
-  subpackages:
-  - unix
 testImports: []

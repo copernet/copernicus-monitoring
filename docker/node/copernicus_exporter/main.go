@@ -1,25 +1,16 @@
 package main
 
 import (
-	"net/http"
-
-	log "github.com/Sirupsen/logrus"
+	"github.com/astaxie/beego/logs"
 	"github.com/prometheus/client_golang/prometheus"
 	"github.com/prometheus/client_golang/prometheus/promhttp"
+	"net/http"
 )
 
 func main() {
+	prometheus.MustRegister(newChainCollector())
 
-	//Create a new instance of the foocollector and
-	//register it with the prometheus client.
-	foo := newFooCollector()
-	prometheus.MustRegister(foo)
-
-	//This section will start the HTTP server and expose
-	//any metrics on the /metrics endpoint.
 	http.Handle("/metrics", promhttp.Handler())
-	log.Info("Beginning to serve on port :8081")
-	log.Fatal(http.ListenAndServe(":8081", nil))
+	logs.Info("Beginning to serve on port :8081")
+	logs.Error(http.ListenAndServe(":8081", nil))
 }
-
-
