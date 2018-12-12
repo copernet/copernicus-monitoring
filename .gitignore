@@ -5,8 +5,6 @@
 *.so
 *.dylib
 
-copernicus_exporter
-
 vendor/
 
 # Test binary, build with `go test -c`
