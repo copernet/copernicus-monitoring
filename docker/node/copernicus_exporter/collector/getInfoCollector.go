@@ -17,10 +17,6 @@ type GetInfoCollector struct {
 	connections     *prometheus.Desc
 }
 
-func newDesc(fqName, help string) *prometheus.Desc {
-	return prometheus.NewDesc(fqName, help, nil, nil)
-}
-
 func NewGetInfoCollector() *GetInfoCollector {
 	return &GetInfoCollector{
 		blocks:          newDesc("get_info_blocks", "Get the number of current blocks"),
@@ -36,7 +32,7 @@ func (collector *GetInfoCollector) Describe(ch chan<- *prometheus.Desc) {
 }
 
 func (collector *GetInfoCollector) Collect(ch chan<- prometheus.Metric) {
-	ctx, cancel := context.WithTimeout(context.Background(), 10*time.Second)
+	ctx, cancel := context.WithTimeout(context.Background(), 5*time.Second)
 	defer cancel()
 
 	cmd := exec.CommandContext(ctx, "/bin/bash", "-c", "$GOPATH/bin/coperctl getinfo")
@@ -61,10 +57,4 @@ func (collector *GetInfoCollector) Collect(ch chan<- prometheus.Metric) {
 	ch <- prometheus.MustNewConstMetric(collector.blocks, prometheus.CounterValue, float64(blocks))
 	ch <- prometheus.MustNewConstMetric(collector.protocolVersion, prometheus.CounterValue, float64(protocolVersion))
 	ch <- prometheus.MustNewConstMetric(collector.connections, prometheus.CounterValue, float64(connections))
-}
-
-func checkErr(err error) {
-	if err != nil {
-		logs.Error("error:%s", err.Error())
-	}
 }
