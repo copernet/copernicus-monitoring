@@ -22,12 +22,12 @@ type GetTxOutSetInfoCollector struct {
 
 func NewGetTxOutSetInfoCollector() *GetTxOutSetInfoCollector {
 	return &GetTxOutSetInfoCollector{
-		height:       newDesc("get_txout_set_info_height", "Get the number of current blocks"),
-		transactions: newDesc("get_txout_set_info_transactions", "Get current protocol version"),
-		txouts:       newDesc("get_txout_set_info_txouts", "Get the number of current connections"),
-		bogosize:     newDesc("get_txout_set_info_bogosize", "Get the number of current blocks"),
-		diskSize:     newDesc("get_txout_set_info_diskSize", "Get current protocol version"),
-		totalAmount:  newDesc("get_txout_set_info_totalAmount", "Get the number of current connections"),
+		height:       newDesc("get_txout_set_info_height", "Get the height of current txout set"),
+		transactions: newDesc("get_txout_set_info_transactions", "Get the transactions of current txout set"),
+		txouts:       newDesc("get_txout_set_info_txouts", "Get the txouts of current txout set"),
+		bogosize:     newDesc("get_txout_set_info_bogosize", "Get the bogosize of current txout set"),
+		diskSize:     newDesc("get_txout_set_info_diskSize", "Get the disk size of current txout set"),
+		totalAmount:  newDesc("get_txout_set_info_totalAmount", "Get the total amount of current txout set"),
 	}
 }
 
