@@ -9,7 +9,7 @@ import (
 )
 
 func main() {
-	prometheus.MustRegister(collector.NewChainCollector())
+	prometheus.MustRegister(collector.NewGetInfoCollector())
 
 	http.Handle("/metrics", promhttp.Handler())
 	logs.Info("Beginning to serve on port :8081")
