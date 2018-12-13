@@ -11,6 +11,7 @@ import (
 func main() {
 	prometheus.MustRegister(collector.NewGetInfoCollector())
 	prometheus.MustRegister(collector.NewGetBlkChainInfoCollector())
+	prometheus.MustRegister(collector.NewGetMemPoolInfoCollector())
 
 	http.Handle("/metrics", promhttp.Handler())
 	logs.Info("Beginning to serve on port :8081")
