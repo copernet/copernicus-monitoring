@@ -12,6 +12,7 @@ func main() {
 	prometheus.MustRegister(collector.NewGetInfoCollector())
 	prometheus.MustRegister(collector.NewGetBlkChainInfoCollector())
 	prometheus.MustRegister(collector.NewGetMemPoolInfoCollector())
+	prometheus.MustRegister(collector.NewGetMiningInfoCollector())
 	prometheus.MustRegister(collector.NewGetTxOutSetInfoCollector())
 
 	http.Handle("/metrics", promhttp.Handler())
