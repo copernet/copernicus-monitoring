@@ -1,5 +1,5 @@
-hash: 649511020d496767c36a18eadc35950f2b05e8dcd85a4929aa7f51af582d162e
-updated: 2018-12-12T17:59:27.544373+08:00
+hash: 20f08c646e259d2ce84ca9f60c4ce4128ed82e079b65ea14e826315638de5b8d
+updated: 2018-12-13T14:17:17.014418+08:00
 imports:
 - name: github.com/astaxie/beego
   version: 1b6edafc96ad27b6515fafeccd7339dda3e997b1
@@ -9,6 +9,10 @@ imports:
   version: 3a771d992973f24aa725d07868b467d1ddfceafb
   subpackages:
   - quantile
+- name: github.com/copernet/copernicus
+  version: 172cf02ec64839d30f16152989d6d441fe067a5f
+  subpackages:
+  - rpc/btcjson
 - name: github.com/golang/protobuf
   version: 1d3f30b51784bec5aad268e59fd3c2fc1c2fe73f
   subpackages:

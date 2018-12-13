@@ -1,4 +1,4 @@
-package: .
+package: github.com/copernet/copernicus-monitoring/docker/node/copernicus_exporter
 import:
 - package: github.com/astaxie/beego
   version: ^1.9.2
@@ -14,3 +14,5 @@ import:
 - package: github.com/prometheus/client_model
   subpackages:
   - go
+- package: github.com/copernet/copernicus
+  version: v0.0.6
