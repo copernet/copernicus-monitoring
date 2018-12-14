@@ -51,7 +51,11 @@ func (collector *GetTxOutSetInfoCollector) Collect(ch chan<- prometheus.Metric) 
 	err = cmd.Wait()
 
 	var ret btcjson.GetTxOutSetInfoResult
-	if err := json.NewDecoder(stdout).Decode(&ret); err != nil {
+
+	decoder := json.NewDecoder(stdout)
+	decoder.UseNumber()
+	err = decoder.Decode(&ret)
+	if err != nil {
 		logs.Error(err)
 		return
 	}
@@ -59,14 +63,14 @@ func (collector *GetTxOutSetInfoCollector) Collect(ch chan<- prometheus.Metric) 
 	height := ret.Height
 	transactions := ret.Transactions
 	txouts := ret.TxOuts
-	bogosize:=ret.BogoSize
-	disksize:=ret.DiskSize
-	totalamount:=ret.TotalAmount
+	bogosize := ret.BogoSize
+	disksize := ret.DiskSize
+	totalamount := ret.TotalAmount
 
 	ch <- prometheus.MustNewConstMetric(collector.height, prometheus.CounterValue, float64(height))
 	ch <- prometheus.MustNewConstMetric(collector.transactions, prometheus.CounterValue, float64(transactions))
 	ch <- prometheus.MustNewConstMetric(collector.txouts, prometheus.CounterValue, float64(txouts))
 	ch <- prometheus.MustNewConstMetric(collector.bogosize, prometheus.CounterValue, float64(bogosize))
 	ch <- prometheus.MustNewConstMetric(collector.diskSize, prometheus.CounterValue, float64(disksize))
-	ch <- prometheus.MustNewConstMetric(collector.totalAmount, prometheus.CounterValue, float64(totalamount))
+	ch <- prometheus.MustNewConstMetric(collector.totalAmount, prometheus.CounterValue, totalamount)
 }
