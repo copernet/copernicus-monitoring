@@ -2,13 +2,11 @@ package collector
 
 import (
 	"bytes"
-	"context"
 	"encoding/json"
 	"github.com/astaxie/beego/logs"
 	"github.com/copernet/copernicus/rpc/btcjson"
 	"github.com/prometheus/client_golang/prometheus"
 	"os/exec"
-	"time"
 )
 
 type GetTxOutSetInfoCollector struct {
@@ -41,17 +39,16 @@ func (collector *GetTxOutSetInfoCollector) Describe(ch chan<- *prometheus.Desc) 
 }
 
 func (collector *GetTxOutSetInfoCollector) Collect(ch chan<- prometheus.Metric) {
-	ctx, cancel := context.WithTimeout(context.Background(), 20*time.Second)
-	defer cancel()
+	//ctx, cancel := context.WithTimeout(context.Background(), 20*time.Second)
+	//defer cancel()
 
-	cmd := exec.CommandContext(ctx, "/bin/bash", "-c", "$GOPATH/bin/coperctl gettxoutsetinfo")
+	cmd := exec.Command("/bin/bash", "-c", "$GOPATH/bin/coperctl gettxoutsetinfo")
 	stdout := &bytes.Buffer{}
 	cmd.Stdout = stdout
 
 	err := cmd.Start()
 	checkErr(err)
 	err = cmd.Wait()
-	//logs.Info("cmd wait err:%s", err.Error())
 
 	var ret btcjson.GetTxOutSetInfoResult
 	if err := json.NewDecoder(stdout).Decode(&ret); err != nil {
